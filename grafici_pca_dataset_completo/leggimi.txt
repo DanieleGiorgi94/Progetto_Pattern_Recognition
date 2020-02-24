@@ -1,0 +1,25 @@
+figura view_profiles.png
+    da quanto ho capito dalla registrazione, dal grafico in alto si può
+    cominciare a vedere quali sono i contributi "medi" delle variabili del
+    dataset in relazione alla classe. Si vede che i contributi di tutte le
+    variabili per le classi 1, 2 e 3 sono praticamente uguali mentre quello per
+    la classe 4 è abbastanza diverso.
+
+figura scores_plot.png
+    è lo score plot fatto con 6 componenti principali e autoscaling;
+    tra PC1 e PC2;
+    nell'esercitazione venivano fuori i puntini relativi alla stessa classe
+    abbastanza vicini quindi credo che qua siamo in una situazione abbastanza
+    complicata...
+
+figura loadings.png
+    grafico dei loading, sempre 6 componenti principali e autoscaling;
+    è tra PC1 e PC2;
+    non mi sembra ci siano loadings piccoli.
+
+figura loadings2.png
+    grafico dei loadings tra PC2 e PC3: mi sembra che i loadings piccoli siano
+    quelli relativi alla variabile 2 (temperatura) e variabile 3 (pressione) ma
+    non ne trovo molto senso. È anche vero che complessivamente PC2 e PC3 fanno
+    circa il 35% della varianza quindi forse non sono due componenti principali
+    su cui fare molto affidamento.
