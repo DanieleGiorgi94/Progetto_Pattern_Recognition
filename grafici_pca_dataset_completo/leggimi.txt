@@ -1,26 +1,91 @@
-figura view_profiles.png
-    da quanto ho capito dalla registrazione, dal grafico in alto si può
-    cominciare a vedere quali sono i contributi "medi" delle variabili del
-    dataset in relazione alla classe. Si vede che i contributi di tutte le
-    variabili per le classi 1, 2 e 3 sono praticamente uguali mentre quello per
-    la classe 4 è abbastanza diverso.
+Tutto quello che ho scritto qua è quello che secondo le registrazioni mi sembra
+bisogna osservare. I risultati non mi convincono tanto però magari è dato dal
+fatto che il dataset è molto grande.
 
-figura plots.png
-    prima figura:
-    è lo score plot fatto con 6 componenti principali e autoscaling;
-    tra PC1 e PC2;
-    nell'esercitazione venivano fuori i puntini relativi alla stessa classe
-    abbastanza vicini quindi credo che qua siamo in una situazione abbastanza
-    complicata...
+nonscaled.png
+    senza alcun tipo di scaling la prima componente principale ha il 100% della
+    varianza. Dallo score plot tra prima e seconda componente principale si vede
+    che le classi sono tra loro abbastanza separate (a parte la classe 4 che è
+    "contenuta" nella classe 3 ma queste possiamo considerarle entrambe come
+    valori di radiation alti). (non sono molto sicuro di quello che ho scritto
+    per via della daltonia ahahah)
 
-    seconda figura:
-    grafico dei loading, sempre 6 componenti principali e autoscaling;
-    è tra PC1 e PC2;
-    non mi sembra ci siano loadings piccoli.
+    giusto per far vedere, ho fatto lo score plot tra seconda e terza PC.
+    Siccome hanno 0% di varianza entrambe, è intuibile che fa schifo ed
+    effettivamente lo è.
 
-    terza figura:
-    grafico dei loadings tra PC2 e PC3: mi sembra che i loadings piccoli siano
-    quelli relativi alla variabile 2 (temperatura) e variabile 3 (pressione) ma
-    non mi sembra sensato. È anche vero che complessivamente PC2 e PC3 fanno
-    circa il 35% della varianza quindi forse non sono due componenti principali
-    su cui fare molto affidamento.
+    dai loadings vediamo che la variabile 5 (wind degrees) è la variabile che
+    contraddistingue di più la seconda PC, mentre la variabile 1 (orario) è
+    quella che contraddistingue di più la prima PC. Le altre variabili sono
+    abbastanza ininfluenti per entrambe le componenti principali ed, inoltre,
+    essendo molto vicine tra loro, significa che è possibile considerarne un
+    sottoinsieme di esse.
+
+    dalla figura in basso a destra, si vede che il contributo maggiore alle
+    classi è sempre dato dall'orario;
+
+mean_centering.png:
+    con il mean centering scaling la prima PC ha ancora il 100% della varianza.
+    Dallo score plot tra prima e seconda PC le classi mi sembrano ancora
+    suddivise similmente al caso di prima.
+
+    Tra seconda e terza PC, avendo lo 0% di varianza, aspettiamo uno schifo e mi
+    sembra lo sia.
+
+    dai loadings tra prima e seconda PC, vediamo che V5 (wind degrees)
+    contraddistingue la seconda PC mentre V1 (orario) contraddistingue la prima
+    PC. Tutte le altre variabili sono sovrapposte quindi potremmo considerarne
+    soltanto una tra queste.
+
+    dai loading tra seconda e terza PC, invece, vediamo che la V4 (umidità)
+    contraddistingue la seconda PC mentre V5 (wind degrees) contraddistingue la
+    terza PC. Tutte le altre variabili sono sovrapposte quindi potremmo
+    considerarne soltanto una.
+
+    FORSE siccome V5 (wind degrees) senza scaling è cruciale per la seconda PC
+    mentre con mean centering è cruciale per la prima, potrebbe essere la
+    variabile che "confonde" la classificazione. (così mi sembra di aver capito
+    dalla registrazione della lezione ma non capisco per quale motivo l'analisi
+    senza scaling e quella con lo scaling dovrebbero essere collegate)
+
+autoscaled.png
+    con autoscaling le componenti principali hanno più o meno il 20% di varianza
+    ciascuna. Gli score plot tra le prime 4 PC mi sembrano molto incasinati.
+
+    grafico loadings PC1 e PC2:
+    la V6 (wind speed) è molto importante per la prima PC;
+    V4 (umidità), V5 (wind degrees), V1 (orario) sono più o meno importanti sia
+    per la prima PC, sia per la seconda PC;
+    V2 (temperatura), V3 (pressione) sono abbastanza vicine e significative per
+    la prima PC: potremmo quasi considerare soltanto una di esse.
+
+    grafico loadings PC2 e PC3:
+    V2 (temperatura) e V3 (pressione) confermano essere significative solamente
+    per la prima PC;
+    V6 (wind speed) è anche sufficientemente significativa per la terza PC;
+    V4 (umidità) e V5 (wind degrees) non sono molto significative per la terza
+    PC;
+    V1 (orario) è anche molto significativa per la terza PC.
+
+    grafico loadings PC3 e PC4:
+    V5 (wind degrees) è significativa per la quarta PC;
+    V2 (temperatura) e V3 (pressione) sono poco significative anche per la
+    quarta PC;
+    V1 (orario), V4 (umidità) e V6 (wind speed) non sono troppo significative
+    per la quarta PC.
+
+Conclusioni:
+Considerando l'intero dataset, distinguiamo:
+    -   caso senza scaling per cui è sufficiente una sola PC e l'unica variabile
+    davvero significativa è l'orario. Credo che questo si potesse già capire dal
+    grafico sul contributo delle variabili sulle classi.
+
+    -   caso con mean centering scaling per cui è ancora sufficiente una sola PC
+    e questa volta l'unica variabile significativa è ancora l'orario.
+    Effettivamente, anche in questo caso la variabile orario era la più
+    significativa (vedi mean_centering_profile.png)
+
+    -   caso con autoscaling per cui tutte le PC sono significative e nessuna
+    variabile è davvero "superiore" all'altra. Anche qui, le variabili sono
+    tutte abbastanza significative per ogni classe
+    (vedi autoscaling_profile.png)

@@ -2,6 +2,8 @@ clear all
 close all
 clc
 
+grafici = 0;
+
 data = readtable('SolarPrediction.csv');
 
 %conversione fahrenheit in celsius
@@ -12,6 +14,9 @@ data{:,6} = data{:,6} / 29.921;
 
 %conversione miglia in km
 data{:,9} = data{:,9} * 1.60934;
+
+%ri-mappatura orario
+data{:,1} = mod(data{:,1}, 60 * 60 * 24);
 
 september_data = data(1:7417,:);
 october_data = data(7418:16238,:);
@@ -30,33 +35,12 @@ max_radiation_value = floor(max(y_september_data)) + 1;
 sampled_y_september_data = ...
     ceil(y_september_data / (max_radiation_value / n_levels));
 
-x_october_data = october_data{:,cols};
-y_october_data = october_data{:,4};
-%discretizzazione della colonna Y in 4 valori
-max_radiation_value = floor(max(y_october_data)) + 1;
-sampled_y_october_data = ...
-    ceil(y_october_data / (max_radiation_value / n_levels));
-
-x_november_data = november_data{:,cols};
-y_november_data = november_data{:,4};
-%discretizzazione della colonna Y in 4 valori
-max_radiation_value = floor(max(y_november_data)) + 1;
-sampled_y_november_data = ...
-    ceil(y_november_data / (max_radiation_value / n_levels));
-
-x_december_data = december_data{:,cols};
-y_december_data = december_data{:,4};
-%discretizzazione della colonna Y in 4 valori
-max_radiation_value = floor(max(y_december_data)) + 1;
-sampled_y_december_data = ...
-    ceil(y_december_data / (max_radiation_value / n_levels));
-
+%%%----------------------GRAFICI DI SETTEMBRE-------------------------------
+if grafici == 1
 figure(1); hold on;
 title('UNIXTime vs Radiation');
-plot(x_september_data(:,1) - x_september_data(length(x_september_data)), ...
-    y_september_data);
-plot(x_september_data(:,1) - x_september_data(length(x_september_data)), ...
-    sampled_y_september_data * 100, ...
+plot(x_september_data(:,1), y_september_data, '*');
+plot(x_september_data(:,1), sampled_y_september_data * 100, ...
 's', 'MarkerSize', 10, 'MarkerEdgeColor', 'red', 'MarkerFaceColor', [1 .6 .6]);
 hold off;
 
@@ -94,3 +78,26 @@ plot(x_september_data(:,6), y_september_data, '*');
 plot(x_september_data(:,6), sampled_y_september_data * 100, ...
 's', 'MarkerSize', 10, 'MarkerEdgeColor', 'red', 'MarkerFaceColor', [1 .6 .6]);
 hold off;
+end
+%%%-------------------------------------------------------------------------
+
+x_october_data = october_data{:,cols};
+y_october_data = october_data{:,4};
+%discretizzazione della colonna Y in 4 valori
+max_radiation_value = floor(max(y_october_data)) + 1;
+sampled_y_october_data = ...
+    ceil(y_october_data / (max_radiation_value / n_levels));
+
+x_november_data = november_data{:,cols};
+y_november_data = november_data{:,4};
+%discretizzazione della colonna Y in 4 valori
+max_radiation_value = floor(max(y_november_data)) + 1;
+sampled_y_november_data = ...
+    ceil(y_november_data / (max_radiation_value / n_levels));
+
+x_december_data = december_data{:,cols};
+y_december_data = december_data{:,4};
+%discretizzazione della colonna Y in 4 valori
+max_radiation_value = floor(max(y_december_data)) + 1;
+sampled_y_december_data = ...
+    ceil(y_december_data / (max_radiation_value / n_levels));

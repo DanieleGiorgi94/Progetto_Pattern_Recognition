@@ -13,6 +13,9 @@ data{:,6} = data{:,6} / 29.921;
 %conversione miglia in km
 data{:,9} = data{:,9} * 1.60934;
 
+%ri-mappatura orario
+data{:,1} = mod(data{:,1}, 60 * 60 * 24);
+
 %togliamo Date, Time, Radiation, TimeSunRise e TimeSunSet per la matrice X
 cols = [1, 5, 6, 7, 8, 9];
 xdata = data{:,cols};

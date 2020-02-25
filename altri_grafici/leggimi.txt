@@ -6,15 +6,9 @@ rosso indicano quindi il "livello" della radiazione.
 I dati sono riferiti al mese di settembre.
 
 UNIXTime vs Radiation:
-    mostra l'andamento delle radiazioni per ogni giorni del mese di settembre:
-    secondo me bisogna per forza dividere in fasce orarie poiché se ci pensi
-    UNIXTime cresce con continuità e non permette di capire che, per esempio, le
-    9:00 del 1 settembre è un'orario "simile" alle 9:00 del 2 settembre. Spero
-    sia chiaro... Il fatto è che dal grafico si vede che più o meno a metà
-    giornata c'è un picco di radiazione ma il valore di UNIXTime di metà
-    giornata di due giorni diversi non è lo stesso. Di conseguenza non riusciamo
-    ad ottenere la correlazione tra, per esempio, mezzogiorno e radiazione al
-    massimo, poiché il valore di mezzogiorno non è univoco.
+    purtroppo la conversione da UNIXTime ad un orario fattibile è stata fatta
+    con il fuso orario GMT+0 quindi nel grafico si vede che i picchi di
+    radiazione sono ad inizio e fine giornata.
 
 Temperature vs Radiation:
     qui c'è qualche problemino poiché per bassi valori di temperatura il valore
