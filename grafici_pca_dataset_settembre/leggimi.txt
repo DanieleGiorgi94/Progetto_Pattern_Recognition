@@ -1,0 +1,20 @@
+pc1e2.png:
+    Per quanto riguarda lo score plot:
+    se confronti con plots.png nella cartella grafici_pca_dataset_completo mi
+    sembra di cominciare a vedere un minimo di distinzione tra la classe 4
+    (radiazione alta) e le altre classi. Ci sono ancora molti punti sovrapposti
+    ma sicuramente è un pochino meglio.
+
+    Per quanto riguarda i loadings, la variabile V5 (direzione del vento)
+    potrebbe avere un valori un po' più piccolo.
+
+altri_loadings.png:
+    questi sono i loadings tra componente principale 1 e 3 e tra 2 e 3: mi
+    sembra che la V5 non sia più piccola qua
+
+profiles.png:
+    i contributi medi delle variabili sulle classe sono completamente
+    sovrapposti... quindi sotto questo aspetto era meglio il dataset completo
+    (o almeno credo). In ogni caso, notiamo che la variabile 1 (UNIXTime) ha un
+    contributo altissimo rispetto alle altre. Non riesco a capire se le altre
+    sono esattamente zero.

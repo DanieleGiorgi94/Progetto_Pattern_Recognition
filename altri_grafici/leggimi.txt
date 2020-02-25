@@ -1,0 +1,58 @@
+Tutti i grafici hanno sull'asse delle y il valore di radiation e il suo valore
+discretizzato (ovvero 1, 2, 3 o 4 a seconda di quale fascia di valori ha la
+radiazione). Siccome il valore delle radiazioni raggiunge valori molto alti, ho
+moltiplicato per 100 la discretizzazione così di vede meglio. I quadratini in
+rosso indicano quindi il "livello" della radiazione.
+I dati sono riferiti al mese di settembre.
+
+UNIXTime vs Radiation:
+    mostra l'andamento delle radiazioni per ogni giorni del mese di settembre:
+    secondo me bisogna per forza dividere in fasce orarie poiché se ci pensi
+    UNIXTime cresce con continuità e non permette di capire che, per esempio, le
+    9:00 del 1 settembre è un'orario "simile" alle 9:00 del 2 settembre. Spero
+    sia chiaro... Il fatto è che dal grafico si vede che più o meno a metà
+    giornata c'è un picco di radiazione ma il valore di UNIXTime di metà
+    giornata di due giorni diversi non è lo stesso. Di conseguenza non riusciamo
+    ad ottenere la correlazione tra, per esempio, mezzogiorno e radiazione al
+    massimo, poiché il valore di mezzogiorno non è univoco.
+
+Temperature vs Radiation:
+    qui c'è qualche problemino poiché per bassi valori di temperatura il valore
+    della radiazione è sempre basso; man mano che la temperatura aumenta, ci
+    sono sia valori di radiazione alti, sia valori di radiazione bassi. In ogni
+    caso credo che la regressione con la PLS darà un peso minore a questo
+    parametro che è comunque importante.
+    Con temperature maggiori di 16-17 gradi ci sono quasi soltanto valori di
+    radiazione nella 3/4 fascia.
+    Sicuramente, valori dalla terza fascia in poi non si hanno mai a meno che
+    la temperatura non salga al di sopra dei 12 gradi (è come se fosse una
+    condizione necessaria per avere radiazione alta ma non sufficiente ahah)
+
+Pressure vs Radiation:
+    la pressione in settembre non è discriminante per niente direi... qualsiasi
+    sia il valore ci sono molti valori di qualunque fascia di intensità di
+    radiazione.
+
+Humidity vs Radiation:
+    anche l'umidità in settembre non è per niente discriminante...
+
+Wind speed vs Radiation:
+    idem di sopra
+
+Wind degrees vs Radiation:
+    questa mi dà l'impressione che tra 200° e 300° l'intensità di radiazione sia
+    abbastanza bassa molto frequentemente; per gli altri valori, invece, varia
+    tra valori bassi e alti tranquillamente.
+
+IMPORTANTE:
+    anche se singolarmente tutte queste ultime variabili non sono quasi per
+    niente informative, effettivamente bisogna considerare che probabilmente è
+    la combinazione di esse che crea le discriminanti... Quindi, per farci
+    un'idea senza usare PCA, ecc., potremmo fare dei grafici multidimensionali
+    (anche se riusciamo a combinare al più soltanto due variabili).
+
+    In ogni caso, se adesso leggi tutti i 'leggimi.txt' all'interno delle varie
+    cartelle che ho creato, in ciascuno di essi si vede che gli score plot sono
+    molto confusi e che UNIXTime è l'unica variabile che effettivamente dà un
+    contributo significativo alla classificazione: secondo me questo è dovuto
+    proprio al fatto che ho provato a spiegare prima sull'UNIXTime.

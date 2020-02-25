@@ -23,12 +23,3 @@ ydata = data{:,4};
 max_radiation_value = floor(max(ydata)) + 1;
 n_levels = 4;
 sampled_ydata = ceil(ydata / (max_radiation_value / n_levels));
-
-reduced_xdata = xdata(1:10000,:);
-reduced_ydata = sampled_ydata(1:10000);
-
-%divisione del dataset in train (90%) e test (10%)
-%row_train = 29417;
-%% fprintf('%.0f\n',height(data)*90/100) = 29417
-%train = data(1:row_train, :);
-%test = data(row_train+1:height(data),:);
