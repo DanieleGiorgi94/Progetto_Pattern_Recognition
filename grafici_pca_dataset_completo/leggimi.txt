@@ -10,6 +10,9 @@ nonscaled.png
     valori di radiation alti). (non sono molto sicuro di quello che ho scritto
     per via della daltonia ahahah)
 
+EDIT DANIELE: SI HAI RAGIONE SULLA TERZA E QUARTA CLASSE, PROBABILMENTE POTREMMO
+ CONSIDERARNE SOLO 3 A QUESTO PUNTO UNENDOLE QUELLE DUE.
+
     giusto per far vedere, ho fatto lo score plot tra seconda e terza PC.
     Siccome hanno 0% di varianza entrambe, è intuibile che fa schifo ed
     effettivamente lo è.
@@ -47,6 +50,8 @@ mean_centering.png:
     variabile che "confonde" la classificazione. (così mi sembra di aver capito
     dalla registrazione della lezione ma non capisco per quale motivo l'analisi
     senza scaling e quella con lo scaling dovrebbero essere collegate)
+
+EDIT DANIELE: BOH NON NE HO IDEA, MA SUPPONGO SIA COSì EFFETTIVAMENTE A LOGICA.
 
 autoscaled.png
     con autoscaling le componenti principali hanno più o meno il 20% di varianza
@@ -89,3 +94,9 @@ Considerando l'intero dataset, distinguiamo:
     variabile è davvero "superiore" all'altra. Anche qui, le variabili sono
     tutte abbastanza significative per ogni classe
     (vedi autoscaling_profile.png)
+
+EDIT DANIELE: ME LO ASPETTAVO CHE L'AUTOSCALING FACESSE SCHIFO PERCHé FONDAMENTALMENTE
+	      HANNO TUTTE UNITà DI MISURA DIFFERENTI, QUINDI NORMALIZZARE TUTTO ALLA STESSA MANIERA NON FA ALTRO CHE "AUMENTARE" IL RUMORE SECONDO ME. QUINDI A STO PUNTO
+CREDO CHE NON SERVIRà Più FARLO E CONSIDERARE AL Più IL MEAN CENTERING, CHE POI
+SE NON SBAGLIO è UNA PROCEDURA CHE FA IN AUTOMATICO LA PCA PRIMA DI CALCOLARE LE 
+COMPONENTI PRINCIPALI. 
