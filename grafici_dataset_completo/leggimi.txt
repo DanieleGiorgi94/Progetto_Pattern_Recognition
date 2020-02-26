@@ -100,4 +100,25 @@ EDIT DANIELE: ME LO ASPETTAVO CHE L'AUTOSCALING FACESSE SCHIFO PERCHé FONDAMENT
  MANIERA NON FA ALTRO CHE "AUMENTARE" IL RUMORE SECONDO ME. QUINDI A STO PUNTO
 CREDO CHE NON SERVIRà Più FARLO E CONSIDERARE AL Più IL MEAN CENTERING, CHE POI
 SE NON SBAGLIO è UNA PROCEDURA CHE FA IN AUTOMATICO LA PCA PRIMA DI CALCOLARE LE 
-COMPONENTI PRINCIPALI. 
+COMPONENTI PRINCIPALI.
+
+--------------------------------PLS----------------------------------
+ho suddiviso il dataset in 90% training set, 10% test set
+
+pls_mean_centering.png
+    grafico MSE:
+    boh, non so interpretarlo bene
+
+    grafico a destra:
+    la regressione esce così. Considerando che la pca non dà risultati
+    eccezionali, direi che avere come RMSEC soltanto 177 e RMSECV 154 non
+    dovrebbe essere poi così male. Il problema che vedo a occhio è che tipo il
+    valore 1600 (il rombo rosso più in alto di tutti) viene predetto con un
+    valore che sta tra 500 e 1000 (credo circa a 700) mentre quelli più a destra
+    all'altezza di 1000 sono predetti con circa 1250.
+
+pls_nonscaled.png
+    uguale a quella di prima. Effettivamente le due PCA erano identiche.
+
+pls_mean_centering.png
+    questo è con 70% di training set; le cose non cambiano di molto.
