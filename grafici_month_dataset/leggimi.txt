@@ -1,0 +1,63 @@
+pca_noscaling_settembre.png:
+    il mese di settembre ha sostanzialmente lo stesso andamento del dataset
+    completo; variabili significative sono V1 (UNIXTime), V5 (Wind degrees) e
+    V4 (Humidity). Le altre variabili sono poco significative e molto vicine
+    perciò potremmo pensare di utilizzarne soltanto una.
+
+pls_noscaling_settembre.png:
+    non vedo molto miglioramento. La radiazione 1600 viene addirittura predetta
+    come circa 600.
+
+pls_noscaling_settembre_4features.png:
+    qua ho messo solo UNIXTime, Wind degrees, Humidity e Temperature: non
+    migliora di molto.
+
+Gli altri scaling non li ho fatti perché a occhio ho visto che non cambia
+molto dai risultati con il dataset completo. Anche gli altri mesi sembrano
+uguali al mese di settembre.
+
+Mi sono appena accorto che i valori tra 0 e 200 vengono predetti come valori
+tra -200 e 0 (qualsiasi PLS, anche quelle di prima) e ovviamente i valori
+negativi non hanno senso.
+
+Conclusione:
+    Nemmeno riducendo il dataset la PLS dà risultati soddisfacenti.
+    Sicuramente finora abbiamo fatto una analisi che ha ricoperto:
+        -   preprocessing con PCA
+        -   PLS
+        -   identificazione outliers (anche se non l'ho mai nominata, dagli
+            score plot non si vedevano mai dei campioni particolarmente
+            isolati dagli altri)
+        -   influenza della normalizzazione dei dati
+        -   cross-validazione (lo script della PLS che ci ha dato martinelli la
+            fa automaticamente)
+    che sono 4 delle cose che ha scritto martinelli nella email. Tra le cose
+    che rimangono c'è
+        -   rete neurale FFNET
+        -   feature selection
+    Domani mi sento la registrazione sulle reti neurali e mi leggo un po' la
+    feature selection:
+        -   vediamo se la feature selection riesce a migliorare le cose con la
+            PLS
+            (magari vediamo se effettivamente seleziona le feature che abbiamo
+            visto essere significative con la PCA e, in caso sono diverse,
+            ripetiamo le varie analisi
+        -   in caso la PLS non va proprio mentre la rete neurale dà un risultato
+            decente possiamo anche concludere che la regressione non è una
+            soluzione fattibile
+
+    Un'ultimissima cosa che potremmo provare è quella di cambiare il problema da
+    regressione a classificazione con
+        -   classe 1: radiazione da 0 a 400
+        -   classe 2: radiazione da 400 a 800
+        -   classe 3: radiazione da >800
+    (per i range delle classi sarebbe opportuno fare qualche ricerca su internet
+    per vedere quali sono effettivamente i valori di radiazione che possono
+    essere considerati "alti" altrimenti immagino che martinelli possa
+    controbattere sulla scelta)
+    In questo caso, dovremmo usare il toolbox class_gui ed usare la PCA-DA e
+    PLS-DA. Se dovesse funzionare sicuramente dobbiamo comunque presentare le
+    soluzioni di regressione con PLS e della rete neurale: immagino che in caso
+    faccia schifo qualunque soluzione per la regressione, cambiare il problema
+    da regressione a classificazione potrebbe essere una cosa sensata e che non
+    ci condannerà troppo.
