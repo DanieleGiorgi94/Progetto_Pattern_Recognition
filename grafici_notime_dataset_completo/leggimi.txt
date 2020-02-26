@@ -1,0 +1,58 @@
+Questi grafici sono stati fatti togliendo dal dataset la colonna UNIXTime,
+sperando che mettano in evidenza altre variabili importanti.
+
+noscaling.png:
+    senza scaling la prima PC ha il 94.46% e la seconda il 5.34%; le altre hanno
+    una percentuale bassissima.
+    Dal grafico dei loadings si vede che la prima PC è molto legata alla
+    variabile V4 (wind degrees) e parzialmente anche alla variabile V3 (umidità)
+    Le altre variabili hanno tutte loading molto basso e sono molto vicine tra
+    loro. Anche dal grafico dei profiles in basso si vede che effettivamente
+    V3 e V4 sono le due variabili con più contributo alla classificazione.
+
+mean_centering.png:
+    con il mean centering scaling la prima PC ha il 90.6% e la seconda 8.88%; le
+    altre hanno percentuale molto bassa.
+    Dal grafico dei loadings si vede che la prima PC è molto legata alla V4
+    (wind degrees) e la seconda PC da V3 (umidità). Tutte le altre variabili
+    sono molto vicine tra loro e hanno loading basso.
+    Anche in questo caso, si vede dalla grafico in basso che V3 (umidità) e V4
+    (wind degrees) hanno il contributo maggiore alla classificazione (fatta
+    eccezione della classe 1 per cui il valore è basso per tutte e 5 le
+    variabili.
+
+autoscaling.png:
+    Le componenti principali hanno tutte una percentuale del 20-30%. Rispetto al
+    caso con UNIXTime, le classi sono divise più decentemente.
+    Dai loadings si vede che V5 (wind speed) è molto importante per la seconda
+    PC. Per la prima PC, in ordine di importanza ci sono V1 (temperatura),
+    V2 (pressione), V4 (wind degrees) e V3 (wind speed). Siccome V1 e V2 sono
+    abbastanza vicine si potrebbe pensare di considerare soltanto una di esse.
+    V3 e V4 danno lo stesso contributo alla prima PC ma contribuiscono in
+    maniera diversa e non trascurabile sulla seconda PC.
+    Dal grafico in basso vediamo che con autoscaling la variabile più
+    significativa è la V1 (temperatura) seguita da V3 (umidità) e V4
+    (wind degrees).
+
+conclusioni:
+    senza scaling le variabili più importanti sono wind degrees e umidità;
+    con mean centering scaling le variabili più importanti sono ancora wind
+    degrees e umidità;
+    con autoscaling l'unica variabile che potremmo pensare di escludere è
+    l'umidità.
+
+    I risultati sono abbastanza controintuitivi, lo so...
+
+pls_noscaling.png:
+    le due figure in alto sono la regressione con tutte le feature mentre quelle
+    in basso con soltanto wind degrees, umidità e temperatura.
+
+    non è sicuramente un risultato fattibile ma almeno sembra confermare le
+    cose della PCA siccome sono tutti e due abbastanza simili.
+
+pls_meancentering.png:
+    uguale a quello di sopra; infatti la pca era uguale.
+
+pls_autoscaling.png:
+    qua ho tolto solamente l'umidità come avevamo trovato con la PCA; i
+    risultati sono simili alle altre due pls.

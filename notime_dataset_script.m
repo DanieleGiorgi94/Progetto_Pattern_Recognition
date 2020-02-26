@@ -13,11 +13,8 @@ data{:,6} = data{:,6} / 29.921;
 %conversione miglia in km
 data{:,9} = data{:,9} * 1.60934;
 
-%ri-mappatura orario
-data{:,1} = mod(data{:,1}, 60 * 60 * 24);
-
 %togliamo Date, Time, Radiation, TimeSunRise e TimeSunSet per la matrice X
-cols = [1, 5, 6, 7, 8, 9];
+cols = [5, 6, 7, 8, 9];
 xdata = data{:,cols};
 %usiamo Radiation come colonna delle Y
 ydata = data{:,4};
@@ -33,24 +30,24 @@ value = height(data) * perc / 100;
 
 %preparazione dataset per la PLS
 all_features = 0;
-only_time = 0;
-time_winddegrees_temperature = 1;
+three_features = 0;
+humidity_out = 1;
 
 %normalizzazione 0 (no scaling), 1 (autoscaling), 2 (mean centering)
-norm = 2;
+norm = 1;
 
 if all_features == 1
     training_set = xdata(1:floor(value),:);
     test_set = xdata(floor(value)+1:length(xdata),:);
 end
-if only_time == 1
-    training_set = xdata(1:floor(value),1);
-    test_set = xdata(floor(value)+1:length(xdata),1);
+if three_features == 1
+    training_set = xdata(1:floor(value),[1 3 4]);
+    test_set = xdata(floor(value)+1:length(xdata),[1 3 4]);
 end
-if time_winddegrees_temperature == 1
-    training_set = xdata(1:floor(value),[1 2 5]);
-    test_set = xdata(floor(value)+1:length(xdata),[1 2 5]);
+if humidity_out == 1
+    training_set = xdata(1:floor(value),[1 3 4 5]);
+    test_set = xdata(floor(value)+1:length(xdata),[1 3 4 5]);
 end
 
-training_y = ydata(1:floor(value));
 test_y = ydata(floor(value)+1:length(ydata),:);
+training_y = ydata(1:floor(value));

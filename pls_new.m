@@ -26,7 +26,6 @@ ytest = test_y;
 %norm =1 autoscaling
 %norm=2 mean centering
 %norm=0 no scaling
-norm = 2;
 if norm==1
     [X,MU,SIGMA] = zscore(X1);
      for i=1:length(Xtest1(:,1))
@@ -48,7 +47,7 @@ end
 
 %%
 % Analisi esplorativa dell'informazione delle singole features
-ff=6; % feature che vogliamo correlare con l'uscita
+ff=length(X(1,:)); % feature che vogliamo correlare con l'uscita
 % N = grado del polinomio con cui vogliamo determinare una possibile 
 %relazione tra la feature e l'uscita
 N=10;

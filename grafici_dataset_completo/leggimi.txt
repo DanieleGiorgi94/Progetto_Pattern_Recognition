@@ -120,5 +120,16 @@ pls_mean_centering.png
 pls_nonscaled.png
     uguale a quella di prima. Effettivamente le due PCA erano identiche.
 
-pls_mean_centering.png
+pls_mean_centering2.png
     questo è con 70% di training set; le cose non cambiano di molto.
+
+pls_onlytime.png
+    pls con soltanto UNIXTime: fa cagare
+
+pls_3features.png
+    pls con UNIXTime, Temperature e Wind degrees: è simile a quello con tutte le
+    features (peggiora lievemente). Per lo meno questo conferma che le cose che
+    abbiamo osservatore con la PCA sono più o meno sensate (ovvero che UNIXTime
+    e Wind degrees hanno il contributo maggiore rispetto alle altre e che tutte
+    le altre variabili hanno un contributo talmente simile tra loro che possiamo
+    prenderne soltanto una)
