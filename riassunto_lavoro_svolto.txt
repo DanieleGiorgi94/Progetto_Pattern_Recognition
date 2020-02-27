@@ -1,0 +1,15 @@
+1.  (grafici_dataset_completo/)
+    tutto il dataset;
+    siccome unixtime aveva il 100% di varianza, non permetteva i analizzare con
+    chiarezza le altre variabili del problema;
+2.  (grafici_notime_dataset_completo/)
+    tolto unixtime, abbiamo analizzato le altre variabili. Abbiamo, quindi,
+    capito quali altre variabili sono importanti ma i risultati erano sia
+    pessimi in fase di regressione, sia intuitivamente contorti;
+3.  (grafici_month_dataset/)
+    abbiamo ridotto il dataset dividendolo per mesi; le analisi portano a
+    risultati analoghi al caso del dataset completo.
+    Nello script month_dataset_script.m c'è la possibilità di plottare tutte le
+    variabili rispetto a radiation;
+4.  (mean_dataset_script.m)
+    generazione del dataset medio.
