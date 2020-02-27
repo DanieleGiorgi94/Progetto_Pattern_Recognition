@@ -11,5 +11,16 @@
     risultati analoghi al caso del dataset completo.
     Nello script month_dataset_script.m c'è la possibilità di plottare tutte le
     variabili rispetto a radiation;
-4.  (mean_dataset_script.m)
-    generazione del dataset medio.
+4.  (timeslot_mean_dataset_script.m)
+    generazione del dataset mediato sulle fasce orarie (ogni fascia oraria sono
+    3 ore)
+    RMSEC = 140 e RMSECV = 212
+5.  (daily_mean_dataset_script.m)
+    generazione dataset mediato per mesi (ovvero media mensile dei valori delle
+    features in ogni fascia oraria)
+    questo è l'unico in cui nel plot tra
+        fascia oraria e radiation
+        temperatura e radiation
+    si vede bene che sono legate tra loro.
+    RMSEC = 40 e RMSECV = 130
+    Più ridotto di questo non si può

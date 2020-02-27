@@ -150,15 +150,24 @@ mean_dataset = [mean_september_data;
 perc = 70;
 value = length(mean_dataset) * perc / 100;
 
+xdata = mean_dataset(:,[1 3 4 5 6 7]);
+ydata = mean_dataset(:,[2]);
+
 %preparazione dataset per la PLS
-xcols = [1 3 4];
-ycols = [2];
+xcols = [1 2 3 4 5 6];
+%xcols = [2 4 5];
 
 %normalizzazione 0 (no scaling), 1 (autoscaling), 2 (mean centering)
-norm = 2;
+norm = 0;
 
-training_set = mean_dataset(1:floor(value), xcols);
-test_set = mean_dataset(floor(value)+1:length(mean_dataset), xcols);
+training_set = xdata(1:floor(value), xcols);
+test_set = xdata(floor(value)+1:length(xdata), xcols);
 
-training_y = mean_dataset(1:floor(value), ycols);
-test_y = mean_dataset(floor(value)+1:length(mean_dataset), ycols);
+training_y = ydata(1:floor(value));
+test_y = ydata(floor(value)+1:length(ydata));
+
+%discretizzazione della colonna Y in 4 valori
+max_radiation_value = floor(max(mean_dataset(:,2))) + 1;
+n_levels = 4;
+sampled_training_y = ceil(training_y / (max_radiation_value / n_levels));
+sampled_test_y = ceil(test_y / (max_radiation_value / n_levels));
