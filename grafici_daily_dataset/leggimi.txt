@@ -1,0 +1,57 @@
+pca.png:
+    (fatta con mean centering)
+    divide più o meno bene le classi;
+    variabili importanti per le prime tre PC sono V1, V2, V4 e V5
+
+regressione_mean_centering.png:
+    prima colonna di immagini
+        si vede che con 4 variabili latenti il MSE è minimo;
+        RMSEC = 41.909 e RMSECV = 171.3292;
+    seconda colonna di immagini
+        siccome dalla precedente ho visto che 4 variabili latenti ha MSE minimo,
+        ho abbassato le variabili latenti a 4;
+        non so perché ma il grafico del MSE cambia e i valori peggiorano, boh;
+        la regressione comunque ha risultati più o meno simili;
+        RMSEC = 42.0968 e RMSECV = 182.0738
+    terza colonna di immagini
+        ho selezionato solamente le variabili V1, V2, V4 e V5;
+        il minimo MSE si ha con 4 variabili latenti (che è minore di quelli
+        precedenti);
+        la regressione in training non peggiora di molto mentre invece in
+        validation fa un po' più schifo;
+        RMSEC = 47.6095 e RMSECV = 221.7371
+
+pca_noscaling.png:
+    simile a quella con mean centering;
+    forse possiamo aggiungere anche V6 tra le variabili importanti, anche se è
+    significativa per la PC3 che ha solo 0.04%
+
+regressione_noscaling.png:
+    prima colonna
+        MSE minimo per 4 variabili latenti;
+        RMSEC = 41.909, RMSECV = 171.2392 (uguale a quello con mean centering)
+    seconda colonna
+        uso 4 LV e ottengo RMSEC = 42.0968 e RMSECV = 182.0738
+    terza colonna
+        uso solo le 5 variabili che suggerisce la PCA (V1, V2, V4, V5 e V6)
+        ancora dice 4 LV è l'ottimale
+        RMSEC = 42.0968 e RMSECV = 182.1029
+    quarta colonna
+        5 variabili e 4 LV
+        RMSEC = 42.0968 e RMSECV = 182.0738
+
+Comunque in realtà RMSEC e RMSECV così alti non sono indice di un errore così
+sproporzionato poiché sono definiti come
+
+                 (  (y_predetto - y_vero)^2 )
+            sqrt (  ----------------------- )
+                 (      #campioni           )
+
+quindi se RMSECV = 182 significa che se per esempio fosse un solo campione,
+allora stiamo sbagliando il valore di radiation di esattamente 182. Siccome
+radiation ha un'escursione che va da 0 a 1600 non è nemmeno troppo.
+
+scores_dataset_totale.png:
+    qua si vede che i campioni di dicembre di radiazione alta
+    (S25 e S32 in particolare) si confondono con i campioni degli altri mesi di
+    radiazione bassa

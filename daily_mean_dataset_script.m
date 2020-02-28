@@ -119,36 +119,28 @@ end
 mean_december_data = ...
     mean_december_data(sum(isnan(mean_december_data), 2) == 0,:);
 
-%%togliamo Date, Time, Radiation, TimeSunRise e TimeSunSet per la matrice X
-%cols = [1, 5, 6, 7, 8, 9];
-%xdata = data{:,cols};
-%%usiamo Radiation come colonna delle Y
-%ydata = data{:,4};
-
-%%discretizzazione della colonna Y in 4 valori
-%max_radiation_value = floor(max(ydata)) + 1;
-%n_levels = 4;
-%sampled_ydata = ceil(ydata / (max_radiation_value / n_levels));
-
 mean_dataset = [mean_september_data;
                 mean_october_data;
                 mean_november_data;
-                mean_december_data;
 ];
 
 %percentuale del training set
 perc = 70;
 value = length(mean_dataset) * perc / 100;
 
+%discretizzazione della colonna Y in n_levels valori
+max_radiation_value = floor(max(mean_dataset(:,2))) + 1;
+n_levels = 3;
 xdata = mean_dataset(:,[1 3 4 5 6 7]);
 ydata = mean_dataset(:,[2]);
+sampled_ydata = ceil(ydata/ (max_radiation_value / n_levels));
 
 %preparazione dataset per la PLS
 xcols = [1 2 3 4 5 6];
 %xcols = [1 2 4 5];
 
 %normalizzazione 0 (no scaling), 1 (autoscaling), 2 (mean centering)
-norm = 2;
+norm = 0;
 
 training_set = xdata(1:floor(value), xcols);
 test_set = xdata(floor(value)+1:length(xdata), xcols);
@@ -156,9 +148,7 @@ test_set = xdata(floor(value)+1:length(xdata), xcols);
 training_y = ydata(1:floor(value));
 test_y = ydata(floor(value)+1:length(ydata));
 
-%discretizzazione della colonna Y in 4 valori
-max_radiation_value = floor(max(mean_dataset(:,2))) + 1;
-n_levels = 2;
+%discretizzazione della colonna Y in n_levels valori
 sampled_training_y = ceil(training_y / (max_radiation_value / n_levels));
 sampled_test_y = ceil(test_y / (max_radiation_value / n_levels));
 
