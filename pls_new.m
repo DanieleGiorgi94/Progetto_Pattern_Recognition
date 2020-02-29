@@ -65,7 +65,7 @@ ylabel('Ouput');
 % numero partizioni
 kk=10;
 % numero max di LV
-n_LV=min([min(size(X)),4]);
+n_LV=min([min(size(X)),3]);
 
 % calcolo PLS
 % per cambiare il tipo di validazione guardare l'help della funzione plsregress

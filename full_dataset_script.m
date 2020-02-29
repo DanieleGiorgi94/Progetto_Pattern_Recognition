@@ -36,21 +36,12 @@ all_features = 0;
 only_time = 0;
 time_winddegrees_temperature = 1;
 
-%normalizzazione 0 (no scaling), 1 (autoscaling), 2 (mean centering)
-norm = 2;
-
-if all_features == 1
-    training_set = xdata(1:floor(value),:);
-    test_set = xdata(floor(value)+1:length(xdata),:);
-end
-if only_time == 1
-    training_set = xdata(1:floor(value),1);
-    test_set = xdata(floor(value)+1:length(xdata),1);
-end
-if time_winddegrees_temperature == 1
-    training_set = xdata(1:floor(value),[1 2 5]);
-    test_set = xdata(floor(value)+1:length(xdata),[1 2 5]);
-end
-
+training_set = xdata(1:floor(value),:);
+test_set = xdata(floor(value)+1:length(xdata),:);
 training_y = ydata(1:floor(value));
 test_y = ydata(floor(value)+1:length(ydata),:);
+
+nnet_training_set = transpose(training_set);
+nnet_test_set = transpose(test_set);
+nnet_training_y = transpose(training_y);
+nnet_test_y = transpose(test_y);
